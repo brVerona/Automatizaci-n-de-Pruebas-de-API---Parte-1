@@ -3,6 +3,7 @@ import pytest
 import pytest_check as check 
 from faker import Faker
 from datetime import datetime
+from conftest import logger
 
 
 fake = Faker()
@@ -83,12 +84,12 @@ class TestPostUser:
 class TestUserWorkflow:
 
     def test_completo_users(self, api_url):
-        print("TEST ENCANDENADOS : GET, POST , PUT , PATCH , DELETE")
-        print("1.GET Obtener usuarios")
+        logger.info("TEST ENCANDENADOS : GET, POST , PUT , PATCH , DELETE")
+        logger.info("1.GET Obtener usuarios")
         #GET: OBTENER LOS USUARIOS
         respose = requests.get(api_url + "users")
         data  = respose.json()
-        check.equal(respose.status_code,201)
+        check.equal(respose.status_code,200)
         check.is_true(len(data) > 0)
         print("1.POST crear usuarios") # esto no se visualiza
 
