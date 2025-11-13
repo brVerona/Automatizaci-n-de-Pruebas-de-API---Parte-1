@@ -1,7 +1,9 @@
 import requests
 import pytest
+import pytest_check as check 
 from faker import Faker
 from datetime import datetime
+
 
 fake = Faker()
 
@@ -50,10 +52,6 @@ class TestGetUser:
             assert i in first_user , f"campo {i} , no esta en {first_user}"
 
 
-
-
-
-
 class TestPostUser:
 
     @pytest.mark.post
@@ -82,6 +80,29 @@ class TestPostUser:
 
 
 
+class TestUserWorkflow:
+
+    def test_completo_users(self, api_url):
+        print("TEST ENCANDENADOS : GET, POST , PUT , PATCH , DELETE")
+        print("1.GET Obtener usuarios")
+        #GET: OBTENER LOS USUARIOS
+        respose = requests.get(api_url + "users")
+        data  = respose.json()
+        check.equal(respose.status_code,201)
+        check.is_true(len(data) > 0)
+        print("1.POST crear usuarios") # esto no se visualiza
+
+        
+        new_user = {
+            "name":fake.name(),
+            "email":fake.email(),
+            "phone":fake.phone_number(),
+            # "createdAt" :"2022-05-05"     
+        }
+
+
+        response = requests.post(api_url + "users", new_user)
+        assert response.status_code == 201
 
         
 
