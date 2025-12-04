@@ -89,7 +89,7 @@ class TestUserWorkflow:
         #GET: OBTENER LOS USUARIOS
         respose = requests.get(api_url + "users")
         data  = respose.json()
-        check.equal(respose.status_code,200)
+        check.equal(respose.status_code,201)
         check.is_true(len(data) > 0)
         print("1.POST crear usuarios") # esto no se visualiza
 
