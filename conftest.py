@@ -3,6 +3,8 @@ import logging
 import pathlib
 import time
 from selenium import webdriver
+from pytest_html import extras
+
 
 
 @pytest.fixture
@@ -64,5 +66,4 @@ def pytest_runtest_makereport(item, call):
 
             report.extra = getattr(report, 'extra', [])
 
-            from pytest_html import extras
             report.extra.append(extras.png(str(file_name)))
