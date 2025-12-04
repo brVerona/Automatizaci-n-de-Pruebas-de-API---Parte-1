@@ -16,6 +16,10 @@ def api_url():
 #     ])
 
 
+def pytest_html_report_title(report):
+    """Cambia el título de la pestaña del navegador"""
+    report.title = "TalentoLab – Reporte de Testing"
+
 path_dir = pathlib.Path('logs')
 path_dir.mkdir(exist_ok=True)
 
